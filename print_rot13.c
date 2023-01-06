@@ -23,7 +23,7 @@ int print_rot13_string(va_list args)
 	for (i = 0; i < len; i++)
 	{
 		if ((str[i] >= 97 && str[i] <= 109) ||
-		    (str[i] >= 65 && str [i] <= 77))
+		    (str[i] >= 65 && str[i] <= 77))
 			_putchar(*(str + i) + 13);
 
 		else if ((str[i] >= 110 && str[i] <= 122) ||
