@@ -9,20 +9,20 @@
 
 int print_int(va_list args)
 {
-	int a, i, j;
-	int k = 1;
+	int i = 0;
+	int j = 0;
 	int count = 1;
+	int size = 0;
+	int n = va_arg(args, int);
 
-	a = va_arg(args, int);
-
-	if (a < 0)
+	if (n < 0)
 	{
 		_putchar('-');
-		i = a * -1;
-		k++;
+		i = n * -1;
+		size++;
 	}
 	else
-		i = a;
+		i = n;
 
 	j = i;
 
@@ -32,11 +32,11 @@ int print_int(va_list args)
 		count *= 10;
 	}
 
-	while (count >= 1)
+	for (; count >= 1; count /= 10)
 	{
-		_putchar(((i / count)% 10) + '0');
-		count /= 10;
-		k++;
+		_putchar(((i / count) % 10) + 48);
+		size++;
 	}
-	return (k);
+
+	return (size);
 }

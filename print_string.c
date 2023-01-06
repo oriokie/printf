@@ -15,17 +15,14 @@ int print_string(va_list args)
 	str = va_arg(args, char *);
 
 	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		return (-1);
 
-	for (; *str != '\0'; len++)
+	for (; *(str + len) != '\0'; len++)
 		;
 
 	for (i = 0; i < len; i++)
 	{
-		(_putchar(*(str + i)));
+		_putchar(*(str + i));
 	}
 
 	return (len);
