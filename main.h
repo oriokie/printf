@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
+#include <stdio.h>
 /**
  * struct function_handler - structure for the _printf function
  * @specifier: the specifier characters
