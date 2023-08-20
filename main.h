@@ -17,5 +17,9 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 void print_integer(int *count, va_list args);
 void print_binary(int *count, va_list args);
+void print_char(int *count, va_list args);
+void print_string(int *count, va_list args);
+void print_percent(int *count, va_list args);
+
 
 #endif/*MAIN_H*/
