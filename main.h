@@ -2,12 +2,14 @@
 #define MAIN_H
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 /**
- * struct function_handler - structure for the _printf function
+ * struct function_h - structure for the _printf function
  * @specifier: the specifier characters
  * @function: a function pointer
  */
-typedef struct
+typedef struct function_h
 {
 	char specifier;
 	void (*function)(int *, va_list);
