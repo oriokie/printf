@@ -4,7 +4,6 @@
  * and then prints it as a chararacter
  * @count: pointer to the count of printed characters
  * @args: variable arg list
- * Return: none
  */
 void print_char(int *count, va_list args)
 {
@@ -19,7 +18,6 @@ void print_char(int *count, va_list args)
  * then prints it character
  * @count: the pointer to the count of the printed integers
  * @args: the variable arg list
- * Return: none
  */
 void print_string(int *count, va_list args)
 {
@@ -38,7 +36,6 @@ void print_string(int *count, va_list args)
  * print_percent - function that prints the percentage sign
  * @count: the number of characters
  * @args: the var arg list
- * Return: None
  */
 void print_percent(int *count, va_list args)
 {
@@ -48,7 +45,6 @@ void print_percent(int *count, va_list args)
 }
 /**
  * _printf - custom printf function that takes in variable arguments
- * mirrors the normal c print f function
  * @format: the string
  * @...: variable arguments that can be passed into the function
  * Return: count of characters printed excluding the null byte
@@ -56,9 +52,11 @@ void print_percent(int *count, va_list args)
 int _printf(const char *format, ...)
 {
 	function_handler form[] = {
-		{'c', print_char},
-		{'s', print_string},
+		{'c', print_char}, {'s', print_string},
 		{'%', print_percent},
+		{'d', print_integer},
+		{'i', print_integer},
+		{'b', print_binary},
 		{'\0', NULL}
 	};
 	int count;
@@ -66,7 +64,6 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
 	count = 0;
 
 	while (*format != '\0')
