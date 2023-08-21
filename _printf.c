@@ -52,15 +52,11 @@ void print_percent(int *count, va_list args)
 int _printf(const char *format, ...)
 {
 	function_handler form[] = {
-		{'c', print_char}, {'s', print_string},
-		{'%', print_percent},
-		{'d', print_integer},
-		{'i', print_integer},
-		{'b', print_binary},
+		{'c', print_char}, {'s', print_string}, {'%', print_percent},
+		{'d', print_integer}, {'i', print_integer}, {'b', print_binary},
 		{'\0', NULL}
 	};
-	int count;
-	int i;
+	int count, i;
 	va_list args;
 
 	va_start(args, format);
@@ -71,7 +67,6 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-
 			for (i = 0; form[i].specifier != '\0'; i++)
 			{
 				if (*format == form[i].specifier)
@@ -80,6 +75,11 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
+		}
+		else if (*format == '\n')
+		{
+			_putchar('\n');
+			count++;
 		}
 		else
 		{
