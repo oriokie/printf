@@ -76,9 +76,9 @@ int _printf(const char *format, ...)
 				}
 			}
 		}
-		else if (*format == '\n')
+		else if (*format == '\\')
 		{
-			_putchar('\n');
+			_putchar('\\');
 			count++;
 		}
 		else
