@@ -1,6 +1,6 @@
-#include <unistd.h> /** added a space **/
+#include <unistd.h>
 /**
- * _putchar: prints a  cahracter to the standard output
+ * _putchar - prints a  cahracter to the standard output
  * @c: The character to be printed
  *
  * Return: 1 on success. On error it returns -1
