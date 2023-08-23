@@ -11,6 +11,7 @@ void print_char(int *count, va_list args)
 	char c;
 
 	c = va_arg(args, int);
+
 	_putchar(c);
 	(*count)++;
 }
@@ -26,6 +27,8 @@ void print_string(int *count, va_list args)
 
 	string = va_arg(args, char *);
 
+	if (!string)
+		string = "(null)";
 	while (*string != '\0')
 	{
 		_putchar(*string);
@@ -54,10 +57,8 @@ int _printf(const char *format, ...)
 {
 	function_handler form[] = {
 		{'c', print_char}, {'s', print_string}, {'%', print_percent},
-		{'d', print_integer},
-		{'i', print_integer},
-		{'b', print_binary},
-		{'\0', NULL}
+		{'d', print_integer}, {'i', print_integer},
+		{'b', print_binary}, {'\0', NULL}
 	};
 	int count;
 	int i;
