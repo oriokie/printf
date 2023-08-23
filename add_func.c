@@ -9,7 +9,7 @@ void print_integer(int *count, va_list args)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	unsigned int num = n;
-	unsigned int divisor;
+	int divisor;
 
 	if (num < 0)
 	{
