@@ -1,5 +1,48 @@
 #include "main.h"
+/**
+ * print_char - function that takes a va_list called list and then gets va-arg
+ * and then prints it as a chararacter
+ * @count: pointer to the count of printed characters
+ * @args: variable arg list
+ */
+void print_char(int *count, va_list args)
+{
+	char c;
 
+	c = va_arg(args, int);
+	_putchar(c);
+	(*count)++;
+}
+/**
+ * print_string - function that takes a va_list and then gets the va-arg and
+ * then prints it character
+ * @count: the pointer to the count of the printed integers
+ * @args: the variable arg list
+ */
+void print_string(int *count, va_list args)
+{
+	char *string;
+
+	string = va_arg(args, char *);
+
+	while (*string != '\0')
+	{
+		_putchar(*string);
+		string++;
+		(*count)++;
+	}
+}
+/**
+ * print_percent - function that prints the percentage sign
+ * @count: the number of characters
+ * @args: the var arg list
+ */
+void print_percent(int *count, va_list args)
+{
+	(void)args;
+	_putchar('%');
+	(*count)++;
+}
 /**
  * _printf - custom printf function that takes in variable arguments
  * @format: the string
@@ -8,38 +51,44 @@
  */
 int _printf(const char *format, ...)
 {
+	function_handler form[] = {
+		{'c', print_char}, {'s', print_string},
+		{'%', print_percent},
+		{'d', print_integer},
+		{'i', print_integer},
+		{'b', print_binary},
+		{'\0', NULL}
+	};
+	int count;
+	int i;
 	va_list args;
 
-	function_handler form[] = {
-	{'c', print_char}, {'s', print_string}, {'%', print_percent},
-	{'d', print_integer}, {'i', print_integer}, {'b', print_binary},
-	{'\0', NULL}};
-	int count = 0;
-	int i;
-
 	va_start(args, format);
+	count = 0;
 
-	while (format)
+	while (*format != '\0')
 	{
-		while (*format != '\0')
+		if (*format == '%')
 		{
-			if (*format == '%')
+			format++;
+
+			for (i = 0; form[i].specifier != '\0'; i++)
 			{
-				format++;
 				if (*format == form[i].specifier)
 				{
 					form[i].function(&count, args);
 					break;
 				}
 			}
-			else
-			{
-				_putchar(*format);
-				count++;
-			}
-			format++;
 		}
-		va_end(args);
-		return (count);
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+
+		format++;
 	}
+	va_end(args);
+	return (count);
 }
