@@ -7,24 +7,36 @@
  */
 void print_integer(int *count, va_list args)
 {
-	unsigned int n;
-
 	int num = va_arg(args, int);
-
-	n = num;
 
 	if (num < 0)
 	{
 		_putchar('-');
-		n = -n;
+		num = -num;
 		(*count)++;
 	}
-	if (n > 9)
+
+	if (num == 0)
 	{
-		print_integer(count, args);
+		_putchar('0');
+		(*count)++;
+		return;
 	}
-	_putchar(n % 10 + '0');
-	(*count)++;
+
+	char digits[10];
+	int digit_count = 0;
+
+	while (num > 0)
+	{
+		digits[digit_count++] = num % 10 + '0';
+		num /= 10;
+	}
+
+	for (int i = digit_count - 1; i >= 0; i--)
+	{
+		_putchar(digits[i]);
+		(*count)++;
+	}
 }
 /**
  * print_binary - function that converts a number into binary
