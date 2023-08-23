@@ -66,29 +66,27 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 	count = 0;
-	while (format != NULL)
+
+	while (*format != '\0')
 	{
-		while (*format != '\0')
+		if (*format == '%')
 		{
-			if (*format == '%')
+			format++;
+			for (i = 0; form[i].specifier != '\0'; i++)
 			{
-				format++;
-				for (i = 0; form[i].specifier != '\0'; i++)
+				if (*format == form[i].specifier)
 				{
-					if (*format == form[i].specifier)
-					{
-						form[i].function(&count, args);
-						break;
-					}
+					form[i].function(&count, args);
+					break;
 				}
 			}
-			else
-			{
-				_putchar(*format);
-				count++;
-			}
-			format++;
 		}
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+		format++;
 	}
 	va_end(args);
 	return (count);
