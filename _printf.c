@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * print_char - function that takes a va_list called list and then gets va-arg
  * and then prints it as a chararacter
