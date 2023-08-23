@@ -9,7 +9,7 @@ void print_integer(int *count, va_list args)
 {
 	unsigned int n;
 
-	unsigned int num = va_arg(args, int);
+	int num = va_arg(args, int);
 
 	n = num;
 
@@ -17,6 +17,7 @@ void print_integer(int *count, va_list args)
 	{
 		_putchar('-');
 		n = -n;
+		(*count)++;
 	}
 	if (n > 9)
 	{
