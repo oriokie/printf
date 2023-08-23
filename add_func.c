@@ -9,7 +9,7 @@ void print_integer(int *count, va_list args)
 {
 	unsigned int n;
 
-	int num = va_arg(args, int);
+	unsigned int num = va_arg(args, int);
 
 	n = num;
 
