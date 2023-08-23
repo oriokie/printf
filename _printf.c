@@ -1,21 +1,23 @@
 #include "main.h"
 
 /**
- * _printf - prints strings and characters and returns number.
- * @format: the string to hold strings and format.
- * @...: represents the variable argumeats.
+ * _printf - custom printf function that takes in variable arguments
+ * @format: the string
+ * @...: variable arguments that can be passed into the function
+ * Return: count of characters printed excluding the null byte
  */
 int _printf(const char *format, ...)
 {
-	va_start(args, format);
+	va_list args;
 
 	function_handler form[] = {
 	{'c', print_char}, {'s', print_string}, {'%', print_percent},
 	{'d', print_integer}, {'i', print_integer}, {'b', print_binary},
 	{'\0', NULL}};
-	int count, i;
+	int count = 0;
+	int i;
 
-	va_list args;
+	va_start(args, format);
 
 	while (format)
 	{
@@ -24,27 +26,11 @@ int _printf(const char *format, ...)
 			if (*format == '%')
 			{
 				format++;
-				for (i = 0; form[i].specifier != '\0'; i++)
+				if (*format == form[i].specifier)
 				{
-					format++;
-					if (*format == form[i].specifier)
-					{
-						form[i].function(&count, args);
-						break;
-					}
-					
+					form[i].function(&count, args);
+					break;
 				}
-				else
-				{
-					_putchar(*format);
-					count++;
-				}
-				format++;
-			}
-			else if (*format == '\\')
-			{
-				_putchar('\\');
-				count++;
 			}
 			else
 			{
@@ -56,3 +42,4 @@ int _printf(const char *format, ...)
 		va_end(args);
 		return (count);
 	}
+}
