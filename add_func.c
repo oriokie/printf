@@ -8,8 +8,8 @@
 void print_integer(int *count, va_list args)
 {
 	int n = va_arg(args, int);
-	int num = n;
-	int divisor;
+	unsigned int num = n;
+	unsigned int divisor;
 
 	if (num < 0)
 	{
