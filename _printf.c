@@ -66,7 +66,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 	count = 0;
-	while (format)
+	while (format != NULL)
 	{
 		while (*format != '\0')
 		{
