@@ -7,9 +7,9 @@
  */
 void print_integer(int *count, va_list args)
 {
-	unsigned long long int n = va_arg(args, unsigned long long int);
-	unsigned long long int num = n;
-	unsigned long long int divisor;
+	unsigned long int n = va_arg(args, unsigned long int);
+	unsigned long int num = n;
+	unsigned long int divisor;
 
 	if (num < 0)
 	{
