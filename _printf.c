@@ -53,8 +53,7 @@ void print_percent(int *count, va_list args)
 int _printf(const char *format, ...)
 {
 	function_handler form[] = {
-		{'c', print_char}, {'s', print_string},
-		{'%', print_percent},
+		{'c', print_char}, {'s', print_string}, {'%', print_percent},
 		{'d', print_integer},
 		{'i', print_integer},
 		{'b', print_binary},
@@ -66,6 +65,9 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 	count = 0;
+
+	if (format == NULL)
+		return (-1);
 
 	while (*format != '\0')
 	{
