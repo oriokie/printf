@@ -7,34 +7,28 @@
  */
 void print_integer(int *count, va_list args)
 {
-	int num = va_arg(args, int);
+	int n = va_arg(args, int);
+	int num = n;
+	int divisor;
 
 	if (num < 0)
 	{
 		_putchar('-');
-		num = -num;
-		(*count)++;
+		n = -n;
 	}
 
-	if (num == 0)
+	divisor = 1;
+
+	while (num / divisor > 9)
 	{
-		_putchar('0');
-		(*count)++;
-		return;
+		divisor *= 10;
 	}
 
-	char digits[10];
-	int digit_count = 0;
-
-	while (num > 0)
+	while (divisor != 0)
 	{
-		digits[digit_count++] = num % 10 + '0';
-		num /= 10;
-	}
-
-	for (int i = digit_count - 1; i >= 0; i--)
-	{
-		_putchar(digits[i]);
+		_putchar(n / divisor + '0');
+		n %= divisor;
+		divisor /= 10;
 		(*count)++;
 	}
 }
